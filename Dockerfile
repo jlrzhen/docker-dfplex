@@ -4,6 +4,7 @@ FROM ubuntu:20.04
 
 # Pre install
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=dumb
 RUN apt-get update
 
 RUN apt-get -y install --no-install-recommends build-essential libsdl1.2debian libsdl-image1.2 libsdl-ttf2.0-0 libopenal1 libsndfile1 libgtk2.0-0 libncursesw5 libglu1 unzip curl libboost-all-dev bzip2

@@ -1,6 +1,6 @@
 APP=docker-dfplex
 IMAGE=$(APP):v1.0
-PORT=10000
+PORT=8000
 
 default:
 	echo default
@@ -14,9 +14,11 @@ remove:
 	echo "no image found"
 start: build
 	docker run \
-	--detach \
 	--publish $(PORT):$(PORT) \
+	--publish 1234:1234 \
+	--publish 5000:5000 \
 	--network host \
+	--security-opt=seccomp=unconfined \
 	$(IMAGE)
 stop:
 	@docker stop $$(docker ps | grep $(APP) | head -2 | tail -1 | awk '{print $$1}')
